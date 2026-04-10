@@ -290,7 +290,7 @@ app.post('/api/enroll', async (req, res) => {
 
         // Industrial Billing Terminal Activation
         const doc = new PDFDocument();
-        const billPath = path.join(__dirname, `bill_${sub._id}.pdf`);
+        const billPath = path.join('/tmp', `bill_${sub._id}.pdf`);
         const stream = fs.createWriteStream(billPath);
         doc.pipe(stream);
 // ... billing logic (skipped for mock)
@@ -314,7 +314,7 @@ app.post('/api/admin/approve/:id', async (req, res) => {
         // High-Fidelity Dispatch Fail-Safe Loop
         try {
             const doc = new PDFDocument();
-            const filePath = path.join(__dirname, `offer_${enrollment._id}.pdf`);
+            const filePath = path.join('/tmp', `offer_${enrollment._id}.pdf`);
             const stream = fs.createWriteStream(filePath);
             doc.pipe(stream);
             doc.fontSize(25).text('OFFER LETTER', 100, 100);
