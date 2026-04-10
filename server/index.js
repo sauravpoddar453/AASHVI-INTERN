@@ -389,3 +389,5 @@ const start = async () => {
         app.listen(process.env.PORT || 5000, () => console.log('🚀 Server Flying (Safe Mode): PRISTINE MODE ACTIVE'));
     }
 };
+
+module.exports = app;

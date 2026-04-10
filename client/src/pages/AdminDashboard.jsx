@@ -62,7 +62,7 @@ const AdminDashboard = () => {
         if (!window.confirm('Delete this?')) return;
         try {
             const endpoint = activeTab === 'courses' ? 'courses' : 'internships';
-            await axios.delete(`http://localhost:5000/api/admin/${endpoint}/${id}`);
+            await api.delete(`/api/admin/${endpoint}/${id}`);
             if (activeTab === 'courses') setCourses(courses.filter(c => c._id !== id));
             else setInternships(internships.filter(i => i._id !== id));
         } catch (err) { alert('Delete failed'); }

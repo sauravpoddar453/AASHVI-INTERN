@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { Search, Globe, Zap, Clock, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CheckoutModal from '../components/CheckoutModal';
@@ -16,8 +16,8 @@ const Internships = () => {
         const fetchData = async () => {
             try {
                 const [intRes, courRes] = await Promise.all([
-                    axios.get('http://localhost:5000/api/internships'),
-                    axios.get('http://localhost:5000/api/courses')
+                    api.get('/api/internships'),
+                    api.get('/api/courses')
                 ]);
                 setPrograms([
                     ...intRes.data.map(i => ({...i, docType: 'Internship'})),

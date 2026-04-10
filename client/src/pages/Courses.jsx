@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { Search, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -11,7 +11,7 @@ const Courses = () => {
     useEffect(() => {
         const fetchCourses = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/courses');
+                const res = await api.get('/api/courses');
                 setCourses(res.data);
                 setLoading(false);
             } catch (err) {
@@ -30,7 +30,7 @@ const Courses = () => {
     const handleEnroll = async (title) => {
         const user = JSON.parse(localStorage.getItem('user')) || { name: 'Guest Student', email: 'guest@example.com' };
         try {
-            await axios.post('http://localhost:5000/api/enroll', {
+            await api.post('/api/enroll', {
                 studentName: user.name,
                 studentEmail: user.email,
                 programTitle: title,

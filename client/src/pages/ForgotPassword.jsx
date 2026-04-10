@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, ShieldCheck, Key, ArrowRight, Lock, ShieldAlert, CheckCircle2 } from 'lucide-react';
 
@@ -14,7 +14,7 @@ const ForgotPassword = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/forgot-password', { email });
+            const res = await api.post('/api/auth/forgot-password', { email });
             alert(res.data.message);
             setStep(2);
         } catch (err) {
@@ -28,7 +28,7 @@ const ForgotPassword = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/reset-password', { email, otp, newPassword });
+            const res = await api.post('/api/auth/reset-password', { email, otp, newPassword });
             alert(res.data.message);
             window.location.href = '/login';
         } catch (err) {

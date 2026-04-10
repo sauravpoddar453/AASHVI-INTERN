@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { NavLink } from 'react-router-dom';
 import { Mail, Lock, User, Globe, ArrowRight, ShieldCheck, GraduationCap, Eye, EyeOff, Briefcase, GraduationCap as Student } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -14,7 +14,7 @@ const Signup = () => {
     e.preventDefault();
     setStatus({ loading: true, message: '', type: '' });
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/signup', { ...formData, role });
+      const res = await api.post('/api/auth/signup', { ...formData, role });
       setStatus({ loading: false, message: 'Registry Successful! Redirecting to Portal...', type: 'success' });
       localStorage.setItem('user', JSON.stringify(res.data.user));
       

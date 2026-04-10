@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Mail, Lock, LogIn, Globe, ArrowRight, ShieldCheck, GraduationCap, Eye, EyeOff } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     setStatus({ loading: true, message: '', type: '' });
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', formData);
+      const res = await api.post('/api/auth/login', formData);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
       

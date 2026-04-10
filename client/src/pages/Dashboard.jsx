@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { 
     User, Briefcase, GraduationCap, Award, Settings, Bell, 
     Search, Star, Clock, FileText, ChevronRight, CheckCircle, 
@@ -20,7 +20,7 @@ const Dashboard = () => {
                 return;
             }
             try {
-                const res = await axios.get(`http://localhost:5000/api/my-enrollments/${user.email}`);
+                const res = await api.get(`/api/my-enrollments/${user.email}`);
                 setEnrollments(res.data);
                 setLoading(false);
             } catch (err) {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { motion } from 'framer-motion';
 import { School, PhoneCall, ArrowRight, ShieldCheck, Zap, User, Camera, Image as ImageIcon } from 'lucide-react';
 
@@ -51,7 +51,7 @@ const CompleteProfile = () => {
         }
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/complete-profile', {
+            const res = await api.post('/api/auth/complete-profile', {
                 email: user.email, phone, college, profileImage
             });
             localStorage.setItem('user', JSON.stringify(res.data.user));
