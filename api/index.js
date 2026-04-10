@@ -1,16 +1,16 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const morgan = require('morgan');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const Razorpay = require('razorpay');
-const PDFDocument = require('pdfkit');
-const nodemailer = require('nodemailer');
-const fs = require('fs');
-const path = require('path');
-const crypto = require('crypto');
-require('dotenv').config();
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import morgan from 'morgan';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import Razorpay from 'razorpay';
+import PDFDocument from 'pdfkit';
+import nodemailer from 'nodemailer';
+import fs from 'fs';
+import path from 'path';
+import crypto from 'crypto';
+import 'dotenv/config';
 
 // Initialize App
 const app = express();
@@ -390,4 +390,4 @@ const start = async () => {
     }
 };
 
-module.exports = app;
+export default app;
