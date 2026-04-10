@@ -5,23 +5,26 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    // Increase limit to 2000kb to suppress the warning
     chunkSizeWarningLimit: 2000,
     rollupOptions: {
       output: {
-        // High-Fidelity Manual Chunking for Industrial Libraries
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-vendor': ['framer-motion', 'lucide-react'],
-          'utils-vendor': ['axios'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react')) return 'react-vendor';
+            if (id.includes('framer-motion') || id.includes('lucide-react')) return 'ui-vendor';
+            if (id.includes('axios')) return 'utils-vendor';
+            return 'vendor';
+          }
         },
       },
     },
-    // Future-proofing for Vite 8 / Rolldown as suggested in build logs
+    // Rolldown compatibility for Vite 8
     rolldownOptions: {
       output: {
-        manualChunks: {
-          'vendor': ['react', 'react-dom', 'react-router-dom', 'framer-motion', 'lucide-react', 'axios'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
         },
       },
     },
